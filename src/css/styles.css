@@ -16,3 +16,90 @@
 @import url('./badges.css');
 @import url('./back-link.css');
 @import url('./footer.css');
+
+/* Загальні стилі для сторінки */
+body {
+  font-family: Montserrat, Arial, sans-serif;
+  margin-top: 36px;
+  padding: 0;
+  background-color: #ffffff;
+}
+
+/* Контейнер для форми пошуку */
+#search-form {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  padding-left: 534px;
+  gap: 8px;
+}
+
+/* Поле введення */
+#search-input {
+  width: 272px;
+  height: 40px;
+  border-radius: 4px;
+  border: 1px solid #808080;
+  padding: 8px;
+  font-size: 16px;
+  font-family: Montserrat, Arial, sans-serif;
+  color: #333333;
+  outline: none;
+  flex-shrink: 0;
+}
+
+/* Кнопка Search */
+#search-button {
+  width: 91px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #4e75ff;
+  color: #ffffff;
+  font-family: Montserrat, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0.64px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Hover-ефект для кнопки */
+#search-button:hover {
+  background: #3b5fcf;
+}
+
+/* Повідомлення про помилку */
+#error-message {
+  width: 432px;
+  height: 88px;
+  position: absolute;
+  top: 36px;
+  right: 36px;
+  background-color: #ff3b30;
+  color: #fafafb;
+  font-family: Montserrat, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  padding: 20px;
+  display: none;
+  border-radius: 8px;
+}
+
+/* Loader (завантажувач) */
+#loader {
+  display: none;
+}
+
+/* Галерея */
+#gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
