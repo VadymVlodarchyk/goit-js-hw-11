@@ -28,7 +28,6 @@ body {
   outline: none;
   flex-shrink: 0;
   padding-left: 16px;
-  /* Відступ для тексту і курсора */
 }
 
 /* Кнопка Search */
