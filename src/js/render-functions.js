@@ -75,8 +75,8 @@ function openModal(images, currentIndex) {
     <div class="modal-content">
       <span class="close-btn">&times;</span>
       <img id="modal-image" src="${images[currentIndex].largeImageURL}" alt="${images[currentIndex].tags}" />
-      <button id="prev-image" class="navigate-btn">Prev</button>
-      <button id="next-image" class="navigate-btn">Next</button>
+      <button id="prev-image" class="navigate-btn">&#8592;</button>
+      <button id="next-image" class="navigate-btn">&#8594;</button>
     </div>
   `;
   document.body.appendChild(modal);
@@ -90,10 +90,21 @@ function openModal(images, currentIndex) {
     modal.remove();
   });
 
-  // Закриття модального вікна при натисканні на темну область
+  // Закриття при натисканні на темну область
   modal.addEventListener('click', (event) => {
     if (event.target === modal) {
       modal.remove();
     }
+  });
+
+  // Перемикання між зображеннями
+  prevButton.addEventListener('click', () => {
+    currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
+    modalImage.src = images[currentIndex].largeImageURL;
+  });
+
+  nextButton.addEventListener('click', () => {
+    currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
+    modalImage.src = images[currentIndex].largeImageURL;
   });
 }

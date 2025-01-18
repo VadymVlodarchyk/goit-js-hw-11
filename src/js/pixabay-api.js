@@ -2,8 +2,7 @@ const API_KEY = '48269176-9eacf4bd75a8a580043143bd0';
 const BASE_URL = 'https://pixabay.com/api/';
 
 export function fetchImages(query, page = 1) {
- const url = `${BASE_URL}?key=${API_KEY}&q=${query}&image_type=photo&orientation=horizontal&safesearch=true&page=${page}`;
-
+  const url = `${BASE_URL}?key=${API_KEY}&q=${query}&image_type=photo&orientation=horizontal&safesearch=true&page=${page}`;
 
   return fetch(url)
     .then(response => {

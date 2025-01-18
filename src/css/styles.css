@@ -197,3 +197,50 @@ body {
   font-weight: bold;
   cursor: pointer;
 }
+
+/* Стиль для кнопок "Prev" та "Next" у модальному вікні */
+.navigate-btn {
+  background: none;
+  border: none;
+  font-size: 40px;
+  color: #fff;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+#prev-image {
+  left: 10px;
+}
+
+#next-image {
+  right: 10px;
+}
+
+/* Індикатор завантаження */
+.loader-inner {
+  display: none;
+}
+
+.loader-inner.hidden {
+  display: block;
+  width: 50px;
+  height: 50px;
+  margin: auto;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
