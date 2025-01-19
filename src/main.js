@@ -3,8 +3,8 @@ import "izitoast/dist/css/iziToast.min.css";
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 
-import { getPosts } from "./js/pixabay-api";
-import { postsTemplate } from "./js/render-functions";
+import { getPosts } from "./js/pixabay-api";  // Переконайтеся, що шлях вірний
+import { postsTemplate } from "./js/render-functions";  // Шлях до вашого шаблону
 
 const form = document.querySelector(".search-form");
 const postsGallery = document.querySelector(".gallery");
@@ -48,20 +48,20 @@ function handleSubmit(event) {
         .catch(error => {
             iziToast.warning({
                 title: "Error",
-                message: `Something went wrong. ${error.message}`,  // Виправлений шаблонний рядок
+                message: `Something went wrong. ${error.message}`,
             });
         })
         .finally(() => {
             event.target.reset();
             hideLoader();
         });
-};
+}
 
 form.addEventListener("submit", handleSubmit);
 
 function showLoader() {
     loader.style.display = "block";
-};
+}
 
 function hideLoader() {
     loader.style.display = "none";
