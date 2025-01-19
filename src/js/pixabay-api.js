@@ -15,7 +15,7 @@ export function getPosts(searchQuery) {
             if (!respond.ok) {
                 throw new Error(`HTTP error! status: ${respond.status}`);
             }
-            return respond.json();  // Отримуємо JSON
+            return respond.json();
         })
         .then(data => {
             // Парсимо рядок JSON з поля 'contents'
