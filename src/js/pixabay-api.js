@@ -1,25 +1,24 @@
-const API_KEY = '48269176-9eacf4bd75a8a580043143bd0';
-const BASE_URL = 'https://pixabay.com/api/';
-
-export function fetchImages(query, page = 1) {
-  const url = `${BASE_URL}?key=${API_KEY}&q=${query}&image_type=photo&orientation=horizontal&safesearch=true&page=${page}`;
-
-  return fetch(url)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Failed to fetch images');
-      }
-      return response.json(); // Повертаємо результат як json
-    })
-    .then(data => {
-      console.log('API data:', data); // Перевіримо відповідь API
-      if (data.hits.length === 0) {
-        throw new Error('No images found');
-      }
-      return data.hits; // Повертаємо масив зображень
-    })
-    .catch(error => {
-      console.error('Error fetching images:', error);
-      throw error;
+export function getPosts(searchQuery) {
+    const BASE_URL = "https://pixabay.com/api"; // Правильний базовий URL
+    const params = new URLSearchParams({
+        key: "48269176-9eacf4bd75a8a580043143bd0",
+        q: searchQuery,
+        image_type: "photo",
+        orientation: "horizontal",
+        safesearch: true
     });
-}
+
+    const url = `${BASE_URL}?${params}`; // Формуємо правильний URL
+
+    return fetch(url)
+        .then(respond => {
+            if (!respond.ok) { // Перевірка статусу відповіді
+                throw new Error(`HTTP error! status: ${respond.status}`);
+            }
+            return respond.json();
+        })
+        .catch(error => {
+            console.error(error);
+            throw new Error(`Something went wrong: ${error.message}`);
+        });
+};

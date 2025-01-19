@@ -1,248 +1,169 @@
-/* Загальні стилі для сторінки */
-body {
-  font-family: Montserrat, Arial, sans-serif;
-  margin-top: 36px;
-  padding: 0;
-  background-color: #ffffff;
-}
+/**
+  |============================
+  | include css partials with
+  | default @import url()
+  |============================
+*/
+@import url('./reset.css');
+@import url('./vite-promo.css');
+@import url('./header.css');
 
-/* Контейнер для форми пошуку */
-#search-form {
-  display: flex;
-  align-items: center;
-  margin: 0 auto;
-  padding-left: 550px;
-  gap: 8px;
-  margin-bottom: 16px;
-}
-
-/* Поле введення */
-#search-input {
-  width: 272px;
-  height: 40px;
-  border-radius: 4px;
-  border: 1px solid #808080;
+:root {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
-  font-family: Montserrat, Arial, sans-serif;
-  color: #333333;
-  outline: none;
-  flex-shrink: 0;
-  padding-left: 16px;
+  line-height: 24px;
+  font-weight: 400;
+
+  color: #242424;
+  background-color: rgba(255, 255, 255, 0.87);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
 }
 
-/* Кнопка Search */
-#search-button {
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+
+  margin-top: 36px;
+  margin-bottom: 32px;
+}
+
+.search-form {
+  display: flex;
+  gap: 8px;
+}
+
+input {
+  border: 1px solid #808080;
+  border-radius: 4px;
+  width: 272px;
+  height: 100%;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 16px;
+
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.50;
+  letter-spacing: 0.04em;
+  color: #808080;
+}
+
+input:hover {
+  border: 1px solid #000;
+  cursor: pointer;
+}
+
+button {
+  border-radius: 8px;
+  border: none;
+  padding: 8px 16px;
   width: 91px;
   height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background: #4e75ff;
-  color: #ffffff;
-  font-family: Montserrat, Arial, sans-serif;
-  font-size: 16px;
+
+  font-family: var(--font-family);
   font-weight: 500;
-  line-height: 24px;
-  letter-spacing: 0.64px;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-/* Hover-ефект для кнопки */
-#search-button:hover {
-  background: #3b5fcf;
-}
-
-/* Повідомлення про помилку (Alert) */
-#error-message {
-  top: 36px;
-  width: 432px;
-  height: 88px;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  display: inline-flex;
-  gap: 8px;
-  padding: 20px;
-  border-radius: 4px;
-  border-bottom: 2px solid #FFBEBE;
-  background: #EF4040;
-  color: #FAFAFB;
-  font-family: Montserrat, Arial, sans-serif;
   font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-  letter-spacing: 0.5px;
-  text-align: left;
-  display: none;
-  flex-shrink: 0;
-}
-
-/* Loader (завантажувач) */
-#loader {
-  display: none;
-}
-
-/* Галерея */
-#gallery {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 16px;
-  padding: 16px;
-}
-
-/* Стиль для карток в галереї */
-.gallery-item {
-  position: relative;
-  overflow: hidden;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  height: 400px;
-  /* Фіксована висота для картки */
-}
-
-/* Стиль для картинки */
-.gallery-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  /* Картинки завжди будуть покривати весь блок */
-}
-
-/* Стиль для інформації на картці (лайки, коментарі) */
-.gallery-item-info {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  gap: 16px;
-  padding: 12px 16px;
-  background-color: #ffffff;
-  color: black;
-  border-radius: 0 0 8px 8px;
-  font-size: 14px;
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-  height: 60px;
-}
-
-/* Стиль для блоків Likes, Views, Comments, Downloads */
-.gallery-item-info .item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* Центруємо по горизонталі */
-  gap: 4px;
-  justify-content: center;
-  /* Центруємо по вертикалі */
-  text-align: center;
-  /* Центруємо текст під іконками */
-}
-
-/* Стиль для іконок лайків, переглядів, коментарів, завантажень */
-.gallery-item-info .item i {
-  font-size: 16px;
-}
-
-/* Стиль для лейблів (Likes, Views, Comments, Downloads) */
-.gallery-item-info .item label {
-  font-weight: normal;
-  font-size: 12px;
-  text-align: center;
-}
-
-/* Стиль для чисел (кількість лайків, переглядів, коментарів, завантажень) */
-.gallery-item-info .item span {
-  font-weight: normal;
-  font-size: 14px;
-  text-align: center;
-  /* Центруємо текст під іконкою */
-}
-
-/* Стиль для модального вікна */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.modal-content {
-  position: relative;
-  max-width: 90%;
-  max-height: 90%;
-}
-
-.modal img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-}
-
-.close-btn {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  color: white;
-  font-size: 24px;
-  font-weight: bold;
-  cursor: pointer;
-<<<<<<< HEAD
-}
-
-/* Стиль для кнопок "Prev" та "Next" у модальному вікні */
-.navigate-btn {
-  background: none;
-  border: none;
-  font-size: 40px;
+  line-height: 1.50;
+  letter-spacing: 0.04em;
   color: #fff;
-  cursor: pointer;
+}
+
+button:hover {
+  background: #6c8cff;
+}
+
+
+.loader {
+  color: #2e2f42;
+  display: inline-block;
+  position: relative;
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+}
+
+.loader::after {
+  content: '';
+  width: 5px;
+  height: 5px;
+  background: currentColor;
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
+  bottom: 10px;
+  right: -5px;
+  box-sizing: border-box;
+  animation: animloader 1s linear infinite;
 }
 
-#prev-image {
-  left: 10px;
-}
-
-#next-image {
-  right: 10px;
-}
-
-/* Індикатор завантаження */
-.loader-inner {
-  display: none;
-}
-
-.loader-inner.hidden {
-  display: block;
-  width: 50px;
-  height: 50px;
-  margin: auto;
-  border: 5px solid #f3f3f3;
-  border-top: 5px solid #3498db;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
+@keyframes animloader {
   0% {
-    transform: rotate(0deg);
+    box-shadow: 10px 0 rgba(255, 255, 255, 0), 20px 0 rgba(255, 255, 255, 0);
+  }
+
+  50% {
+    box-shadow: 10px 0 white, 20px 0 rgba(255, 255, 255, 0);
   }
 
   100% {
-    transform: rotate(360deg);
+    box-shadow: 10px 0 white, 20px 0 white;
   }
-=======
->>>>>>> d2ef22e7e0f845af446a06aca16fd9e9f215ef27
+}
+
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+}
+
+.gallery-item {
+  width: 360px;
+  height: 200px;
+  border: 1px solid #808080;
+}
+
+.gallery-item-image {
+  width: 100%;
+  height: calc(100% - 48px);
+  object-fit: cover;
+}
+
+.info {
+  display: flex;
+  justify-content: space-around;
+}
+
+.info-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: 0.04em;
+  color: #2e2f42;
+
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.info-value {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 200%;
+  letter-spacing: 0.04em;
+  color: #2e2f42;
 }

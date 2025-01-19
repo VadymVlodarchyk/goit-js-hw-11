@@ -1,130 +1,68 @@
-<<<<<<< HEAD
-import { fetchImages } from './js/pixabay-api.js';
-import { renderGallery, clearGallery } from './js/render-functions.js';
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
+import SimpleLightbox from "simplelightbox";
+import "simplelightbox/dist/simple-lightbox.min.css";
 
-// Основні змінні
-const form = document.querySelector('#search-form');
-const gallery = document.querySelector('#gallery');
-const errorMessage = document.querySelector('#error-message');
-const loader = document.querySelector('#loader');
+import { getPosts } from "./js/pixabay-api";
+import { postsTemplate } from "./js/render-functions";
 
-// Функція для показу індикатора завантаження
-function showLoader() {
-  loader.classList.remove('hidden');
-}
+const form = document.querySelector(".search-form");
+const postsGallery = document.querySelector(".gallery");
+const loader = document.querySelector(".loader");
 
-// Функція для приховування індикатора завантаження
-function hideLoader() {
-  loader.classList.add('hidden');
-}
+hideLoader();
 
-// Обробка сабміту форми
-form.addEventListener('submit', onSearchFormSubmit);
+function handleSubmit(event) {
+    event.preventDefault();
 
-function onSearchFormSubmit(event) {
-  event.preventDefault();
+    const query = event.target.elements.searchQuery.value.trim();
 
-  const searchedQuery = form.querySelector('input[name="user_query"]').value.trim();
-  if (!searchedQuery) {
-    showErrorMessage('Please enter a search term.');
-    return;
-=======
-document.addEventListener('DOMContentLoaded', () => {
-  const form = document.querySelector('#search-form');
-  const gallery = document.querySelector('#gallery');
-  const loader = document.querySelector('#loader');
-  const errorMessage = document.querySelector('#error-message');
-
-  // Функція для показу індикатора завантаження
-  function showLoader() {
-    document.getElementById('loader').classList.remove('hidden');
->>>>>>> d2ef22e7e0f845af446a06aca16fd9e9f215ef27
-  }
-
-  // Функція для приховування індикатора завантаження
-  function hideLoader() {
-    document.getElementById('loader').classList.add('hidden');
-  }
-
-<<<<<<< HEAD
-  // Виконуємо запит на сервер
-  fetchImages(searchedQuery)
-    .then(images => {
-      if (images.length === 0) {
-        showErrorMessage('Sorry, there are no images matching your search query. Please try again!');
-      } else {
-        renderGallery(gallery, images); // Виводимо зображення
-      }
-    })
-    .catch(error => {
-      showErrorMessage('Sorry, there was an error fetching the images. Please try again!');
-      console.error(error);
-    })
-    .finally(() => {
-      hideLoader(); // Приховуємо індикатор завантаження
-=======
-  // Обробка сабміту форми
-  form.addEventListener('submit', onSearchFormSubmit);
-
-  function onSearchFormSubmit(event) {
-    event.preventDefault(); // Зупиняємо стандартну поведінку форми
-
-    const searchedQuery = form.querySelector('input[name="user_query"]').value.trim();
-    if (!searchedQuery) {
-      showErrorMessage('Please enter a search term.');
-      return;
+    if (!query) {
+        iziToast.info({
+            title: "No data",
+            message: "Please enter a search query",
+        });
+        return;
     }
 
-    // Очищаємо галерею перед новим запитом
-    clearGallery(gallery);
-    showLoader(); // Показуємо індикатор завантаження
-    errorMessage.classList.add('hidden'); // Приховуємо повідомлення про помилки
+    postsGallery.innerHTML = "";
 
-    // Виконуємо запит на сервер
-    fetchImages(searchedQuery)
-      .then(images => {
-        if (images.length === 0) {
-          // Якщо зображень немає
-          showErrorMessage('Sorry, there are no images matching your search query. Please try again!');
-        } else {
-          renderGallery(gallery, images); // Виводимо зображення
-        }
-      })
-      .catch(error => {
-        showErrorMessage('Sorry, there was an error fetching the images. Please try again!');
-        console.error(error);  // Виводимо помилку в консоль
-      })
-      .finally(() => {
-        hideLoader(); // Приховуємо індикатор завантаження
-      });
-  }
+    showLoader();
 
-  function showErrorMessage(message) {
-    // Використовуємо iziToast для показу повідомлення про помилку
-    iziToast.error({
-      title: 'Error',
-      message: message,
-      position: 'topRight',  // Можна вибрати позицію на сторінці
-      timeout: 5000,  // Час відображення повідомлення
->>>>>>> d2ef22e7e0f845af446a06aca16fd9e9f215ef27
-    });
+    getPosts(query)
+        .then(data => {
+            const markup = postsTemplate(data.hits);
 
-<<<<<<< HEAD
-function showErrorMessage(message) {
-  // Використовуємо iziToast для показу повідомлення про помилку
-  iziToast.error({
-    title: 'Error',
-    message: message,
-    position: 'topRight',
-    timeout: 5000,
-  });
+            if (!data.hits.length) {
+                iziToast.error({
+                    title: "No result",
+                    message: "Sorry, there are no images matching your search query. Please try again!",
+                });
+                return;
+            }
+
+            postsGallery.insertAdjacentHTML("beforeend", markup);
+            const lightbox = new SimpleLightbox(".gallery a");
+            lightbox.refresh();
+        })
+        .catch(error => {
+            iziToast.warning({
+                title: "Error",
+                message: `Something went wrong. ${error.message}`,  // Виправлений шаблонний рядок
+            });
+        })
+        .finally(() => {
+            event.target.reset();
+            hideLoader();
+        });
+};
+
+form.addEventListener("submit", handleSubmit);
+
+function showLoader() {
+    loader.style.display = "block";
+};
+
+function hideLoader() {
+    loader.style.display = "none";
 }
-=======
-    // Якщо потрібно, відображати помилку на сторінці:
-    errorMessage.textContent = message;
-    errorMessage.classList.remove('hidden'); // Показуємо повідомлення
-  }
-});
->>>>>>> d2ef22e7e0f845af446a06aca16fd9e9f215ef27
