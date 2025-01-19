@@ -28,7 +28,6 @@ body {
   outline: none;
   flex-shrink: 0;
   padding-left: 16px;
-  /* Відступ для тексту і курсора */
 }
 
 /* Кнопка Search */
@@ -196,6 +195,7 @@ body {
   font-size: 24px;
   font-weight: bold;
   cursor: pointer;
+<<<<<<< HEAD
 }
 
 /* Стиль для кнопок "Prev" та "Next" у модальному вікні */
@@ -243,4 +243,6 @@ body {
   100% {
     transform: rotate(360deg);
   }
+=======
+>>>>>>> d2ef22e7e0f845af446a06aca16fd9e9f215ef27
 }
