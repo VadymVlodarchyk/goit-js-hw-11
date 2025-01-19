@@ -34,8 +34,19 @@ export default defineConfig(({ command }) => {
           },
         },
       },
+      // Додайте base для коректного відображення на GitHub Pages
+      base: '/goit-js-hw-11/',  // Ваша назва репозиторію на GitHub
       outDir: '../dist',
       emptyOutDir: true,
+    },
+    server: {
+      proxy: {
+        '/api': {
+          target: 'https://api.allorigins.win',  // URL для API
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api/, ''),
+        },
+      },
     },
     plugins: [
       injectHTML(),
